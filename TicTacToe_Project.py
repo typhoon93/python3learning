@@ -145,4 +145,4 @@ def yes_no_game():
             break
         else:
             print("Please write 'y' or 'n'. ")
-            
+
