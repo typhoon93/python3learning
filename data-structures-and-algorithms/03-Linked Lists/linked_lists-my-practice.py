@@ -16,7 +16,7 @@ lookup (value or index) - O(n)
 
 
 POP and Lookup by index is better in lists
-Pop or Prepend -> linked list is better
+Popfirst or Prepend -> linked list is better
 
 
 A linked list node is VALUE + Pointer;
@@ -85,8 +85,7 @@ class LinkedList:
         """removes an item from the end of the list"""
         if self.head is None:
             return None
-        
-        
+    
         popped_value = self.tail
         if self.head == self.tail:
             self.head = None
@@ -127,9 +126,11 @@ class LinkedList:
         if self.head == None:
             self.head = new_node
             self.tail = new_node
-            return new_node
+            self.length +=1
+            return True
         new_node.next = self.head
         self.head = new_node
+        self.length +=1
         return True
     
     def prepend_2(self, value): #video guide code
@@ -218,6 +219,7 @@ class LinkedList:
             temp.next = current_node_at_index.next
             current_node_at_index.value = value
             current_node_at_index.next = temp
+            self.length +=1
             return True
         return False
     
@@ -245,7 +247,7 @@ class LinkedList:
         temp = self.get(index-1)
         node_at_index = temp.next
         temp.next = node_at_index.next
-        temp.next = None
+        node_at_index.next = None
         return node_at_index
     
     def remove_2(self, index):#vid course
@@ -272,6 +274,41 @@ class LinkedList:
         return True
     
     def reverse_2(self): #video course
+        """
+        Algo is very efficient compared to my original one; here's what happens; imagine we have linked list with 3 nodes;
+        N1, N2, N3; 
+        At the start:
+        head = N1; tail = N3
+        N1.next = N2; N2.next = N3; N3.next = None;
+        
+        Setup:
+            temp = head = N1; 
+            We switch head & tail:
+            head = tail = N3
+            tail = temp = N1;
+            after = temp.next = N1.next
+            before = None
+        Inside loop (will run 3 times, as length is 3):
+            Iteration 1:
+                after = temp.next = N1.next = N2 (this is reset, as it will be significant for next loops iterations)
+                temp(N1).next = before = None (temp is pointing to the initial head, which is now the TAIL, so we set it's next to NONE)
+                before = temp = N1
+                temp = after = N2
+            Iteration 2:
+                after = temp.next = N2.next = N3
+                temp(N2).next = before = N1
+                before = temp = N2
+                temp = after = N3
+            Iteration 3:
+                after = temp.next = N3.next = None (this was the initial tail, that's why it's NEXT is NONE for now, in the setup it was set to HEAD)
+                temp(N3).next = before = N2
+                before = temp = N3
+                temp = after = None
+        ENDLOOP
+        after this run, here's how the linked list looks:
+        head = N3; tail = N1;
+        N3.next = N2; N2.next = N1; N1.next = None 
+        """
         temp = self.head
         self.head = self.tail
         self.tail = temp
