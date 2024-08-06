@@ -54,5 +54,55 @@ from typing import List
 
 
 class Solution:
-    def removeElement(self, nams: List[int], val: int) -> int:
-        pass
+    def removeElement(self, nums: List[int], val: int) -> int:
+        """My solution
+        # Complexity
+        - Time complexity:
+        O(n)
+        - Space complexity:
+        O(n)
+        """
+        val_indexes = []
+        length = len(nums)
+        for i in range(length):
+            if nums[i] == val:
+                val_indexes.append(i)
+
+        k = length - len(val_indexes)
+        if k == 0:
+            return k
+
+        switch_index = -1
+        for val_i in val_indexes:
+            if val_i >= length + switch_index:
+                break
+            while nums[switch_index] == val:
+                if val_i + (-switch_index) >= length:
+                    break
+                switch_index -= 1
+
+            nums[val_i] = nums[switch_index]
+            nums[switch_index] = val
+            switch_index -= 1
+        return k
+
+    def removeElement2(self, nums: List[int], val: int) -> int:
+        """A solution that is better and found on leetcode.
+        This solution is simpler and faster, but does not preserve the original values in the array as I did,
+        Time complexity: O(n)
+        Space complexity: O(1)
+        """
+        index = 0
+        for i in range(len(nums)):
+            if nums[i] != val:
+                nums[index] = nums[i]
+                index += 1
+        return index
+
+
+lst = [3, 2, 2, 3]
+
+val = 3
+solution = Solution()
+print(solution.removeElement2(lst, val))
+print(lst)
