@@ -70,3 +70,25 @@ is never bound to the value of the matched item. Also, the _ is the only variabl
 can appear more than once in a pattern
 - The optional guard clause starting with if is evaluated only if the pattern matches,
 and can reference variables bound in the patter
+
+- This is an important Python API convention: functions or methods that change an object in
+place should return None to make it clear to the caller that the receiver was changed,
+and no new object was created
+
+## List Alternatives
+- if a list contains only numbers, use array.array it is more efficient. A Python array is as lean as a C array.
+    - Use memoryview if you do lots of array operations.
+    - use numpy for advanced array and matrix operations
+    - scipy is built on top of numpy
+    - numpy and scipy are foundation for Pandas and scikit-learn
+    - Most NumPy and SciPy functions are implemented in C or C++, and can leverage all CPU cores because they release Python’s GIL(Global Interpreter Lock)
+- collections.deque is a thread-safe double-ended queue designed for fast inserting and removing from both end
+- other queue type built ins you can use:
+    - queue
+    - multiprocessing
+    - asyncio
+    - heapq
+
+## Other
+- Some objects contain references to other objects; these are called containers.
+- key parameter in the sorted(), max(), and min() functions in Python works similarly

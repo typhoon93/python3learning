@@ -13,6 +13,10 @@ the 'LED' constant.
 """
 
 
+class InvalidCommand:
+    pass
+
+
 def handle_command(self, message):
     match message:
         case ["BEEPER", frequency, times]:
