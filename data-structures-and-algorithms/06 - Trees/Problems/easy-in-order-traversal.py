@@ -39,7 +39,7 @@ class TreeNode:
 
 
 class Solution:
-    def inorderTraversal_recursion(self, root: Optional[TreeNode]) -> List[int]:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         """Simple traverse solution with recursion.
         TC = O(n)
         SC = O(n); best case is O(log n), in a balanced tree. In that case the stack of recursion will be log n at its highest.
@@ -59,53 +59,53 @@ class Solution:
 
         traverse(root)
         return result
-
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        """Non recursive, while loop solution
-        Took me a bit to come up with this, but very satisfying.
-        Space complexity is O(n)
-        Time complexity is O(n) as well.
-        """
-        result = []
-        stack = []
-        node = root
-        while node:
-            stack.append(node)
-            if node.left:
-                node = node.left
-                continue
-            else:
-                while stack:
-                    temp = stack.pop()
-                    result.append(temp.val)
-                    if temp.right:
-                        node = temp.right
-                        break
-                    node = None
-
-        return result
-
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        """
-        Clearer and simplied solution, with a while loop.
-        """
-
-        result = []
-        stack = []
-        current = root
-
-        while current or stack:
-            # Reach the left most Node of the current Node
-            while current:
-                stack.append(current)
-                current = current.left
-
-            # Current must be None at this point
-            current = stack.pop()
-            result.append(current.val)  # Process the node
-            current = current.right  # Move to the right node if available
-
-        return result
+    #
+    # def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    #     """Non recursive, while loop solution
+    #     Took me a bit to come up with this, but very satisfying.
+    #     Space complexity is O(n)
+    #     Time complexity is O(n) as well.
+    #     """
+    #     result = []
+    #     stack = []
+    #     node = root
+    #     while node:
+    #         stack.append(node)
+    #         if node.left:
+    #             node = node.left
+    #             continue
+    #         else:
+    #             while stack:
+    #                 temp = stack.pop()
+    #                 result.append(temp.val)
+    #                 if temp.right:
+    #                     node = temp.right
+    #                     break
+    #                 node = None
+    #
+    #     return result
+    #
+    # def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    #     """
+    #     Clearer and simplied solution, with a while loop.
+    #     """
+    #
+    #     result = []
+    #     stack = []
+    #     current = root
+    #
+    #     while current or stack:
+    #         # Reach the left most Node of the current Node
+    #         while current:
+    #             stack.append(current)
+    #             current = current.left
+    #
+    #         # Current must be None at this point
+    #         current = stack.pop()
+    #         result.append(current.val)  # Process the node
+    #         current = current.right  # Move to the right node if available
+    #
+    #     return result
 if __name__ == "__main__":
 
     root = TreeNode(
