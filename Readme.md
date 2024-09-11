@@ -14,8 +14,8 @@ Per request, I can also give you access to some quick videos where I demo the pr
 
 **Description of files & folders here:**
 
-
-
+**data-structures-and-algorithms** - theory where I learned about the data structure or algo + problems subfolders for each where I solve LC exercises related to the data structure.
+**books** - books which I have read related to python and some lessons from them, for my own reference.
 **mmLogoSolution.py** - a script that was created to solve a homework assignment i got for a job application.
 
 
