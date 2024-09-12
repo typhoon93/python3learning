@@ -42,7 +42,7 @@ class Solution:
     def sortedArrayToBST(self, nums):
         """
         This is a gpt solution, I couldn't come up with my in a reasonable time.
-        TC = O(n) - each element is used exactly once to create a none in the BST.
+        TC = O(n) - each element is used exactly once to create a TreeNode in the BST.
         SC = log n - maximum depth of the recursive stack, if we have a balanced tree.
         """
         def helper(start, end):
