@@ -61,3 +61,42 @@ normalize('NFC', str2).casefold())
 ```
 - The Google Search secret sauce involves many tricks, but one of them apparently is
 ignoring diacritics (e.g., accents, cedillas, etc.), at least in some contexts.
+- The standard way to sort non-ASCII text in Python is to use the locale.strxfrm
+function which - if you need non-ASCII sort check it out. Different system may render different results so do extensive tests if you need to use it.
+  - There are some caveats, though:
+    - Because locale settings are global, calling setlocale in a library is not recommended.
+Your application or framework should set the locale when the process
+starts, and should not change it afterward. 
+    - The locale must be installed on the OS, otherwise setlocale raises a
+locale.Error: unsupported locale setting exception. 
+    - You must know how to spell the locale name. 
+    - The locale must be correctly implemented by the makers of the OS.
+- A simpler solution is the **pyuca** library, available on PyPI.
+- The unicodedata module has functions to retrieve character metadata, including uni
+codedata.name():
+  - You can use the name() function to build apps that let users search for characters by
+name.
+    - check cf.py for usage
+  - unicodedata.numeric() can be used to see if a char is numeric
+- The re module is not as savvy about Unicode so it may miss non standard unicode numbers
+- If you build a regular expression with bytes, patterns such as \d and \w only match
+ASCII characters; in contrast, if these patterns are given as str, they match Unicode
+digits or letters beyond ASCII
+- For str regular expressions, there is a re.ASCII flag that makes \w, \W, \b, \B, \d, \D,
+\s, and \S perform ASCII-only matching
+- The GNU/Linux kernel is not Unicode savvy, so in the real world you may find filenames
+made of byte sequences that are not valid in any sensible encoding scheme,
+and cannot be decoded to str. File servers with clients using a variety of OSes are
+particularly prone to this problem.
+- In order to work around this issue, all os module functions that accept filenames or
+pathnames take arguments as str or bytes. If one such function is called with a str
+argument, the argument will be automatically converted using the codec named by
+sys.getfilesystemencoding(), and the OS response will be decoded with the same
+codec. This is almost always what you want, in keeping with the Unicode sandwich
+best practice.
+- To help with manual handling of str or bytes sequences that are filenames or pathnames,
+the os module provides special encoding and decoding functions os.fsen
+code(name_or_path) and os.fsdecode(name_or_path). Both of these functions
+accept an argument of type str, bytes, or an object implementing the os.PathLike
+interface since Python 3.6
+- Unicode is a deep rabbit hole.
