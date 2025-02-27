@@ -9,7 +9,6 @@ This will match a subject with three items starting with 'LED'. If the number of
 items does not match, Python proceeds to the next case.
 Another sequence pattern starting with 'LED', now with five items—including
 the 'LED' constant.
-
 """
 
 
@@ -19,13 +18,13 @@ class InvalidCommand:
 
 def handle_command(self, message):
     match message:
-        case ["BEEPER", frequency, times]:
+        case ['BEEPER', frequency, times]:
             self.beep(times, frequency)
-        case ["NECK", angle]:
+        case ['NECK', angle]:
             self.rotate_neck(angle)
-        case ["LED", ident, intensity]:
+        case ['LED', ident, intensity]:
             self.leds[ident].set_brightness(ident, intensity)
-        case ["LED", ident, red, green, blue]:
+        case ['LED', ident, red, green, blue]:
             self.leds[ident].set_color(ident, red, green, blue)
         case _:
             raise InvalidCommand(message)

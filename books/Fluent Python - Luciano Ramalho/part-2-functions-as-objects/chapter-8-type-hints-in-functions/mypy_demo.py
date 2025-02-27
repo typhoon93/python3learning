@@ -1,7 +1,7 @@
 # pip install mypy
 def show_count(count: int, singular: str, plural: str = '') -> str:
     if count == 1:
-        return f"1 {singular}"
+        return f'1 {singular}'
     count_str = str(count) if count else 'no'
     if not plural:
         plural = singular + 's'
@@ -12,10 +12,13 @@ def show_count(count: int, singular: str, plural: str = '') -> str:
 from pytest import mark
 
 
-@mark.parametrize('qty, expected', [
-    (1, '1 part'),
-    (2, '2 parts'),
-])
+@mark.parametrize(
+    'qty, expected',
+    [
+        (1, '1 part'),
+        (2, '2 parts'),
+    ],
+)
 def test_show_count(qty, expected):
     got = show_count(qty, 'part')
     assert got == expected

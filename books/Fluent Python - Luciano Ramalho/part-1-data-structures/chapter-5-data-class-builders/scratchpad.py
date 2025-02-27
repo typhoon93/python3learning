@@ -56,7 +56,9 @@
 import code
 from collections import namedtuple
 
-City = namedtuple("City", 'name country population coordinates') # split a " "
+City = namedtuple(
+    'City', 'name country population coordinates'
+)   # split a " "
 tokyo = City('Tokyo', 'JP', 36.933, (35.689722, 139.691667))
 code.interact(local=locals())
 print(tokyo)
