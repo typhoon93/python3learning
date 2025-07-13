@@ -27,3 +27,12 @@ Per request, I can also give you access to some quick videos where I demo the pr
 
 
 **elephant-tree-game** - this is a full game, inspired by projects thought in Python Crash Course book. 
+
+
+# Commit Flow:
+
+1. If new lesson or course -> create a branch for it. Name example: "books/fluent_python"
+2. Commit all new stuff there until you are done (regularly push to github.)
+3. When finished with the course -> PR or just merge it locally. To keep things clean do a squash merge unless for some reason keeping exact history makes sense in the context.
+4. Delete the branch to keep everything clean.
+5. 
