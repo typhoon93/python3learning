@@ -3,8 +3,6 @@
  *.pyc
 **/__pycache__/
 .idea/
-/100DaysOfCode
-/learning_python_networking
 /pcc
-/python-network-hacks/
 .venv/
+/private-learning
