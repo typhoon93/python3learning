@@ -275,11 +275,3 @@ Like system context but without a particular focus, broad on the org level
 ## Sequence diagrams
 ![img_13.png](img_13.png)
 ## Collaboration diagrams
- 
-# Anki cards
-- Shneidermans mantra / process, flow for actually diagraming systems
-- the c4 model itself
-- shapes used
-- what info to include in the boxes / shapes at each level
-- Anki card for this method: https://en.wikipedia.org/wiki/Class-responsibility-collaboration_card
-- Sequence diagrams -> add it to anki and get an example
